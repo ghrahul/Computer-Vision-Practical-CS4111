@@ -57,16 +57,20 @@ def normalizeBlue(intensity):
     return iO
 
 imageobject = Image.open("low.png")
+#this is for getting histogram
 img = cv.imread("low.png")
 gethistogram(img)
 
-
+#splitting the image in r g b
 multibands = imageobject.split()
 
+#normalizing r g b
 normalizeRedband = multibands[0].point(normalizeRed)
 normalizGreenband = multibands[1].point(normalizGreen)
 normalizeBlueband = multibands[2].point(normalizeBlue)
 
+
+#merging the image
 normalizedimage = Image.merge("RGB", (normalizeRedband, normalizGreenband, normalizeBlueband))
 
 #imageobject.show()
