@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 img = cv2.imread('index.jpg',0)
-img = cv2.GaussianBlur(img,(5,5),0)
+#img = cv2.GaussianBlur(img,(5,5),0)
 
 ret,th1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
 th2 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
@@ -11,7 +11,7 @@ th2 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
 th3 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
             cv2.THRESH_BINARY,11,2)
 
-titles = ['Denoised Image', 'Global Thresholding (v = 127)',
+titles = ['Noisy Image', 'Global Thresholding (v = 127)',
             'Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
 images = [img, th1, th2, th3]
 
