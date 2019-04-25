@@ -1,14 +1,14 @@
 import cv2
-import numpy as np
-from matplotlib import pyplot as plt
+img1 = cv2.imread('11.jpg')
+img = cv2.pyrDown(img1)
 
-img = cv2.imread('input.jpg',0)
 
-ret, thresh1 = cv2.threshold(img,127,255,cv2.THRESH_BINARY)
-ret, thresh2 = cv2.threshold(img,127,255,cv2.THRESH_BINARY_INV)
-ret, thresh3 = cv2.threshold(img,127,255,cv2.THRESH_TRUNC)
-ret, thresh4 = cv2.threshold(img,127,255,cv2.THRESH_TOZERO)
-ret, thresh5 = cv2.threshold(img,127,255,cv2.THRESH_TOZERO_INV)
+
+ret , o1 = cv2.threshold(img, 125, 255, cv2.THRESH_BINARY)
+ret , o2 = cv2.threshold(img, 125, 255, cv2.THRESH_BINARY_INV)
+ret , o3 = cv2.threshold(img, 125, 255, cv2.THRESH_TOZERO)
+ret , o4 = cv2.threshold(img, 125, 255, cv2.THRESH_TOZERO_INV)
+ret , o5 = cv2.threshold(img, 125, 255, cv2.THRESH_TRUNC)
 thresh6 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
             cv2.THRESH_BINARY,11,2)
 thresh7 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
@@ -16,7 +16,7 @@ thresh7 = cv2.adaptiveThreshold(img,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
 
 
 titles = ['Original Image','BINARY','BINARY_INV','TRUNC','TOZERO','TOZERO_INV','Adaptive Mean Thresholding', 'Adaptive Gaussian Thresholding']
-images = [img, thresh1, thresh2, thresh3, thresh4, thresh5, thresh6, thresh7]
+images = [img, o1, o2, o3, o4, o5, thresh6, thresh7]
 
 for i in range(8):
     plt.subplot(2,3,i+1),plt.imshow(images[i],'gray')
@@ -24,4 +24,3 @@ for i in range(8):
     plt.xticks([]),plt.yticks([])
 
 plt.show()
-
